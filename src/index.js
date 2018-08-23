@@ -31,6 +31,9 @@ injectGlobal`
 	li:hover{
 		color: rgb(200, 200, 200);
 	}
+	::placeholder{
+		font-weight: 100;
+	}
 `
 const Box = styled.div`
 	margin: 0 auto;
@@ -47,12 +50,13 @@ class Container extends React.Component{
 		super();
 		this.state = {
 			todoItems: [
-				{id:1, name:'play the piano'},
-				{id:2, name:'Homework'},
-				{id:3, name:'React projects'}
+				{id:0, name:'play the piano'},
+				{id:1, name:'Homework'},
+				{id:2, name:'React projects'}
 			]
 		};
 		this.createTodoItem = this.createTodoItem.bind(this);
+		this.removeItem = this.removeItem.bind(this);
 	}
 
 	createTodoItem(todoText){
@@ -64,11 +68,20 @@ class Container extends React.Component{
 		this.setState({todoItems: items});
 	}
 
+	removeItem(ev){
+		let items = this.state.todoItems;
+		// let leftItem = items.splice(ev.target,1);
+		// items.remove(ev.target.name);
+		// console.log(this.state.item);
+		ev.target.remove();
+		this.setState({todoItems: items});
+	}
+
 	render(){
 		return(
 			<Box>
 				<TodoTitleInput items={this.state.todoItems} createTodoItem={this.createTodoItem}/>
-				<TodoList items={this.state.todoItems}/>
+				<TodoList items={this.state.todoItems} removeItem={this.removeItem}/>
 			</Box>
 		);
 	}

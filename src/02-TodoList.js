@@ -6,7 +6,7 @@ import TodoItem from './021-TodoItem'
 export default class TodoList extends React.Component{
 	render(){
 		return(
-			<TodoItem items={this.props.items}/>
+			<TodoItem items={this.props.items} removeItem={this.props.removeItem}/>
 		);
 	}
 }
