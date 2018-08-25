@@ -1,6 +1,7 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import styled, {keyframes} from 'styled-components'
+import { Button } from './00-StyledComponents'
 
 const Input = styled.input`
 	&:focus{
@@ -13,14 +14,11 @@ const Input = styled.input`
 	margin-left: 10px;
 	font-size: 14px;
 `
-const Button = styled.button`
+const PlusButton = Button.extend`
 	width: 40px;
 	height: 20px;
 	line-height: 20px;
-	text-align: center;
 	font-size: 16px;
-	border: none;
-	background: none;
 `
 
 export default class NewTodo extends React.Component{
@@ -56,9 +54,12 @@ export default class NewTodo extends React.Component{
 	render(){
 		return(
 			<form onSubmit={this.submit}>
-				<Input placeholder="new todo..." value={this.state.inputText}
-					onChange={this.updateInputText}></Input>
-				<Button onClick={this.createTodoItem}>+</Button>
+				<Input
+					placeholder="new todo..."
+					value={this.state.inputText}
+					onChange={this.updateInputText}
+				></Input>
+				<PlusButton onClick={this.createTodoItem}>+</PlusButton>
 			</form>
 		);
 	}

@@ -14,7 +14,10 @@ export default class TodoTitleInput extends React.Component{
 		return(
 			<TitleInput>
 				<h1>TodoList <span style={{fontSize: '16px'}}>({this.props.items.length})</span></h1>
-				<NewTodo items={this.props.items} createTodoItem={this.props.createTodoItem}/>
+				<NewTodo
+					items={this.props.items}
+					createTodoItem={this.props.createTodoItem}
+				/>
 			</TitleInput>
 		);
 	}
