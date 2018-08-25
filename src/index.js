@@ -68,13 +68,14 @@ class Container extends React.Component{
 		this.setState({todoItems: items});
 	}
 
-	removeItem(ev){
-		let items = this.state.todoItems;
-		// let leftItem = items.splice(ev.target,1);
-		// items.remove(ev.target.name);
-		// console.log(this.state.item);
-		ev.target.remove();
-		this.setState({todoItems: items});
+
+	removeItem(removingtodo){
+		const newtodos = this.state.todoItems.filter((todo, index)=>{
+			return !(todo.id == removingtodo.id && removingtodo.name === todo.name)
+		});
+		this.setState({
+			todoItems: newtodos
+		});
 	}
 
 	render(){

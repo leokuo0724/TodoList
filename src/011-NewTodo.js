@@ -40,7 +40,6 @@ export default class NewTodo extends React.Component{
 	}
 
 	createTodoItem(){
-		console.log(this.state.inputText);
 		if(this.state.inputText){
 			this.props.createTodoItem && this.props.createTodoItem(this.state.inputText);
 			this.setState({

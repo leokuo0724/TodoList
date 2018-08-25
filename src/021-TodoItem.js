@@ -32,9 +32,9 @@ export default class TodoItem extends React.Component{
 	}
 
 	render(){
-		const displayItems = this.props.items.map((item)=>{
-			return(<TodoLi key={item.id} onDoubleClick={this.props.removeItem}
-				id={item.id} onClick={this.done}>{item.name}</TodoLi>);
+		const displayItems = this.props.items.map((item, index)=>{
+			return(<TodoLi key={index} item={item} onDoubleClick={() => {this.props.removeItem(item)}}
+		 	onClick={this.done}>{item.name}</TodoLi>);
 		});
 
 		return(
