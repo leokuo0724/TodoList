@@ -8,7 +8,8 @@ export default class TodoList extends React.Component{
 		return(
 			<TodoItem items={this.props.items}
 				removeItem={this.props.removeItem}
-				clearDoneItem={this.props.clearDoneItem}/>
+				clearDoneItem={this.props.clearDoneItem}
+				isDone={this.props.isDone}/>
 		);
 	}
 }

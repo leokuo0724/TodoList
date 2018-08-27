@@ -69,6 +69,24 @@ class Container extends React.Component{
 		this.createTodoItem = this.createTodoItem.bind(this);
 		this.removeItem = this.removeItem.bind(this);
 		this.clearDoneItem = this.clearDoneItem.bind(this);
+		this.isDone = this.isDone.bind(this);
+	}
+
+	isDone = (itemName) => {
+		this.setState((prevState,props)=>{
+			let index = 0
+			let isDoneIndex = 0
+			prevState.todoItems.map((item) => {
+					if(item.name==itemName)
+							isDoneIndex = index
+					index ++
+			})
+			// console.log(prevState.todoItems)
+			prevState.todoItems[isDoneIndex].isDone = prevState.todoItems[isDoneIndex].isDone ? false : true;
+			return {
+				todoItems: prevState.todoItems
+			}
+		});
 	}
 
 	createTodoItem(todoText){
@@ -89,6 +107,7 @@ class Container extends React.Component{
 			todoItems: newtodos
 		});
 	}
+
 	clearDoneItem(){
 		const newtodos = this.state.todoItems.filter((todo, index)=>{
 			return todo.isDone === false;
@@ -105,7 +124,8 @@ class Container extends React.Component{
 				<TodoTitleInput items={this.state.todoItems} createTodoItem={this.createTodoItem}/>
 				<TodoList items={this.state.todoItems}
 					removeItem={this.removeItem}
-					clearDoneItem={this.clearDoneItem}/>
+					clearDoneItem={this.clearDoneItem}
+					isDone={this.isDone} />
 			</Box>
 		);
 	}

@@ -29,18 +29,26 @@ export default class TodoItem extends React.Component{
 			ev.target.style.color = 'rgb(59, 59, 59)';
 			ev.target.isDone = false;
 		} else {
-			ev.target.style.color = 'rgb(224, 224, 224)'
+			ev.target.style.color = 'rgb(224, 224, 224)';
 			ev.target.isDone = true;
 		}
 	}
 
 	render(){
+		let ul = document.getElementsByTagName('ul')[0];
+		let li = document.getElementsByTagName('li');
 		const displayItems = this.props.items.map((item, index)=>{
 			return(
-				<TodoLi key={index}
+				<TodoLi
+					key={index}
 					item={item}
 					onDoubleClick={() => {this.props.removeItem(item)}}
-		 			onClick={this.done}
+		 			onClick={
+						(event) => {
+							this.done(event)
+							this.props.isDone(event.target.textContent)
+						}
+					}
 				>
 				{item.name}
 				</TodoLi>);
@@ -51,7 +59,15 @@ export default class TodoItem extends React.Component{
 				<ul>
 					{displayItems}
 				</ul>
-				<ClearButton onClick={this.props.clearDoneItem}>clear</ClearButton>
+				<ClearButton
+						onClick={
+							()=>{
+								this.props.clearDoneItem();
+								for(var i=0; i<li.length; i++){
+									li[i].style.color = 'rgb(59, 59, 59)'
+								}
+							}
+						}>clear</ClearButton>
 			</div>
 		);
 	}
